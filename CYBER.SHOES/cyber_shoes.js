@@ -1,4 +1,6 @@
 cyber = {
+    shoe: "shoe",
+
     shoes: {
         walk: function(node) {
             // I stole this function from here:
@@ -25,21 +27,30 @@ cyber = {
                     break;
             }
         },
+
+        laceReplace: function(fullMatch, segmentMatch, offset, string) {
+            var replaceArray = cyber.shoe.split("");
+            for ( var i = 0;
+                  i < segmentMatch.length && i < replaceArray.length;
+                  ++i
+            )
+            {
+                if (segmentMatch[i] == segmentMatch[i].toUpperCase()) {
+                    replaceArray[i] = replaceArray[i].toUpperCase();
+                }
+            }
+            if (segmentMatch.length < fullMatch.length) {
+                replaceArray.push(fullMatch.substring(segmentMatch.length));
+            }
+            return replaceArray.join("");
+        }
     },
     gloves: {
         handLeText: function(textNode) {
             var value = textNode.nodeValue;
-            value = value.replace(/\b(C|c)yber/g, function(match, c, offset, string) {
-                // c is either 'C' or 'c' depending on whether cyber was upper or lower case
-                    if (c === "c")
-                        return "shoe";
-                    if (c ==="C")
-                        return "Shoe";
-            });
 
-            value = value.replace(/\bCYBER/g, "SHOE");
-            value = value.replace(/\bcyborg/g, "shoeborg");
-            value = value.replace(/\bCyborg/g, "Shoeborg");
+            value = value.replace(/\b(cyber)/gi, cyber.shoes.laceReplace);
+            value = value.replace(/\b(cy)b/gi, cyber.shoes.laceReplace);
 
             textNode.nodeValue = value;
         },
