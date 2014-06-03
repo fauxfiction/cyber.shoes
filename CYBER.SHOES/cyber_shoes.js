@@ -37,6 +37,8 @@ function handleText(textNode) {
     });
 
     value = value.replace(/\bCYBER/g, "SHOE");
+    value = value.replace(/\bcyborg/g, "shoeborg");
+    value = value.replace(/\bCyborg/g, "Shoeborg");
 
     textNode.nodeValue = value;
 }
