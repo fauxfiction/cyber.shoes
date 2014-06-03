@@ -28,7 +28,7 @@ cyber = {
             }
         },
 
-        laceReplace: function(fullMatch, segmentMatch, offset, string) {
+        repLace: function(fullMatch, segmentMatch, offset, string) {
             var replaceArray = cyber.shoe.split("");
             for ( var i = 0;
                   i < segmentMatch.length && i < replaceArray.length;
@@ -49,8 +49,8 @@ cyber = {
         handLeText: function(textNode) {
             var value = textNode.nodeValue;
 
-            value = value.replace(/\b(cyber)/gi, cyber.shoes.laceReplace);
-            value = value.replace(/\b(cy)b/gi, cyber.shoes.laceReplace);
+            value = value.replace(/\b(cyber)/gi, cyber.shoes.repLace);
+            value = value.replace(/\b(cy)b/gi, cyber.shoes.repLace);
 
             textNode.nodeValue = value;
         },
